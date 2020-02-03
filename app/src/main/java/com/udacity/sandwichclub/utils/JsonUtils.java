@@ -16,31 +16,31 @@ public class JsonUtils {
     public static Sandwich parseSandwichJson(String json) {
         try {
             JSONObject jsonSandwich = new JSONObject(json);
-            JSONObject nameJsonSandwich = jsonSandwich.getJSONObject("name");
-            String mainName = nameJsonSandwich.getString("mainName");
+            JSONObject nameJsonSandwich = jsonSandwich.optJSONObject("name");
+            String mainName = nameJsonSandwich.optString("mainName");
 
             ArrayList<String> alsoKnownAsList = new ArrayList<String>();
-            JSONArray alsoKnownAsJsonSandwichArray = nameJsonSandwich.getJSONArray("alsoKnownAs");
+            JSONArray alsoKnownAsJsonSandwichArray = nameJsonSandwich.optJSONArray("alsoKnownAs");
 
             String alsoKnownAs = null;
             for (int i = 0; i < alsoKnownAsJsonSandwichArray.length(); i++)
             {
-                alsoKnownAs = alsoKnownAsJsonSandwichArray.getString(i);
+                alsoKnownAs = alsoKnownAsJsonSandwichArray.optString(i);
                 alsoKnownAsList.add(alsoKnownAs);
             }
 
-            String placeOfOrigin = jsonSandwich.getString("placeOfOrigin");
+            String placeOfOrigin = jsonSandwich.optString("placeOfOrigin");
 
-            String description = jsonSandwich.getString("description");
+            String description = jsonSandwich.optString("description");
 
-            String image = jsonSandwich.getString("image");
+            String image = jsonSandwich.optString("image");
 
             ArrayList<String> ingredients = new ArrayList<String>();
-            JSONArray ingredientsJsonSandwichArray = jsonSandwich.getJSONArray("ingredients");
+            JSONArray ingredientsJsonSandwichArray = jsonSandwich.optJSONArray("ingredients");
             String ingredient;
             for (int i = 0; i < ingredientsJsonSandwichArray.length(); i++)
             {
-                ingredient = ingredientsJsonSandwichArray.getString(i);
+                ingredient = ingredientsJsonSandwichArray.optString(i);
                 ingredients.add(ingredient);
             }
 
